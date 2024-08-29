@@ -4,18 +4,18 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
-import { Analytics } from "@vercel/analytics/react";
-import type { MetaFunction } from "@vercel/remix";
+} from '@remix-run/react'
+import { Analytics } from '@vercel/analytics/react'
+import type { MetaFunction } from '@vercel/remix'
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Remix on Vercel" },
-    { name: "description", content: "Welcome to Remix on Vercel!" },
-  ];
-};
+    { title: 'Remix on Vercel' },
+    { name: 'description', content: 'Welcome to Remix on Vercel!' },
+  ]
+}
 
-export const config = { runtime: "edge" };
+export const config = { runtime: 'edge' }
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -33,9 +33,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Analytics />
       </body>
     </html>
-  );
+  )
 }
 
 export default function App() {
-  return <Outlet />;
+  return <Outlet />
 }
