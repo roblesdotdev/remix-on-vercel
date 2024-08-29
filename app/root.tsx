@@ -6,7 +6,7 @@ import {
   ScrollRestoration,
 } from '@remix-run/react'
 import { Analytics } from '@vercel/analytics/react'
-import type { MetaFunction } from '@vercel/remix'
+import { type MetaFunction } from '@vercel/remix'
 
 export const meta: MetaFunction = () => {
   return [

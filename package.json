@@ -7,11 +7,12 @@
     "build": "remix vite:build",
     "dev": "remix vite:dev",
     "typecheck": "tsc",
+    "lint": "eslint .",
     "prettier": "prettier \"**/*.+(js|jsx|css|ts|tsx|cjs|mjs)\"",
     "format": "pnpm prettier --list-different",
     "format:write": "pnpm prettier --write",
     "prepare": "husky",
-    "validate": "run-p typecheck format"
+    "validate": "run-p typecheck lint format"
   },
   "dependencies": {
     "@remix-run/node": "2.10.0",
@@ -29,12 +30,17 @@
     "@types/node": "^22.5.1",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
-    "eslint": "^8.38.0",
+    "eslint": "^9.9.1",
+    "eslint-plugin-import-x": "^4.1.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "globals": "^15.9.0",
     "husky": "^9.1.5",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.6",
     "typescript": "^5.1.6",
+    "typescript-eslint": "^8.3.0",
     "vite": "^5.1.0",
     "vite-tsconfig-paths": "^4.2.1"
   },
