@@ -13,9 +13,12 @@
     "format": "pnpm prettier --list-different",
     "format:write": "pnpm prettier --write",
     "prepare": "husky",
-    "validate": "run-p typecheck lint format"
+    "validate": "run-p typecheck lint format",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@libsql/client": "^0.10.0",
+    "@prisma/adapter-libsql": "^5.19.0",
     "@prisma/client": "^5.19.0",
     "@remix-run/node": "2.11.2",
     "@remix-run/react": "2.11.2",
