@@ -6,4 +6,12 @@
   :root {
     color-scheme: dark;
   }
+
+  body {
+    @apply min-h-screen min-w-80 overflow-x-hidden bg-neutral-900 text-neutral-300;
+  }
+
+  * {
+    @apply border-neutral-400/30;
+  }
 }
