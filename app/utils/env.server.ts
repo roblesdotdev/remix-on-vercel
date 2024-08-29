@@ -3,8 +3,8 @@ import { z } from 'zod'
 export const envSchema = z.object({
   NODE_ENV: z.enum(['production', 'development', 'test'] as const),
   SESSION_SECRET: z.string().min(1),
-  TURSO_DATABASE_URL: z.string().min(1),
-  TURSO_AUTH_TOKEN: z.string().min(1),
+  POSTGRES_PRISMA_URL: z.string().min(1),
+  POSTGRES_URL_NON_POOLING: z.string().min(1),
 })
 
 declare global {

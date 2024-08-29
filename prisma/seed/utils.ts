@@ -1,23 +1,10 @@
 import { db } from '~/utils/db.server'
 
 export async function cleanDatabase() {
-  const tables = await db.$queryRaw<
-    { name: string }[]
-  >`SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE '_prisma_migrations';`
-
   try {
-    // Disable FK constraints to avoid relation conflicts during deletion
-    await db.$executeRawUnsafe(`PRAGMA foreign_keys = OFF`)
-    await db.$transaction([
-      // Delete all rows from each table, preserving table structures
-      ...tables.map(({ name }) =>
-        db.$executeRawUnsafe(`DELETE from "${name}"`),
-      ),
-    ])
+    await db.issue.deleteMany()
   } catch (error) {
     console.error('Error cleaning up database:', error)
-  } finally {
-    await db.$executeRawUnsafe(`PRAGMA foreign_keys = ON`)
   }
 }
 
