@@ -6,6 +6,16 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import { Analytics } from "@vercel/analytics/react";
+import type { MetaFunction } from "@vercel/remix";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Remix on Vercel" },
+    { name: "description", content: "Welcome to Remix on Vercel!" },
+  ];
+};
+
+export const config = { runtime: "edge" };
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
