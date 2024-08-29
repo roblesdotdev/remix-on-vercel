@@ -1,5 +1,6 @@
 import { useLoaderData } from '@remix-run/react'
 import { json } from '@vercel/remix'
+import { GeneralErrorBoundary } from '~/components/error-boundary'
 import { db } from '~/utils/db.server'
 
 export async function loader() {
@@ -37,4 +38,8 @@ export default function Index() {
       </div>
     </div>
   )
+}
+
+export function ErrorBoundary() {
+  return <GeneralErrorBoundary />
 }

@@ -4,7 +4,7 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "remix vite:build",
+    "build": "remix vite:build && prisma generate",
     "dev": "remix vite:dev",
     "preview": "pnpm build && vercel dev",
     "typecheck": "tsc",
@@ -13,8 +13,7 @@
     "format": "pnpm prettier --list-different",
     "format:write": "pnpm prettier --write",
     "prepare": "husky",
-    "validate": "run-p typecheck lint format",
-    "postinstall": "prisma generate"
+    "validate": "run-p typecheck lint format"
   },
   "dependencies": {
     "@libsql/client": "^0.10.0",
