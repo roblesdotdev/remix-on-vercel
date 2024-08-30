@@ -1,16 +1,30 @@
 import { useLoaderData } from '@remix-run/react'
-import { json } from '@vercel/remix'
+import { type HeadersFunction, json } from '@vercel/remix'
 import { GeneralErrorBoundary } from '~/components/error-boundary'
 import { db } from '~/utils/db.server'
+import { CACHE_CONTROL } from '~/utils/http.server'
 
 export async function loader() {
   const issues = await db.issue.findMany({
     take: 3,
     orderBy: { createdAt: 'desc' },
   })
-  return json({
-    issues,
-  })
+  return json(
+    {
+      issues,
+    },
+    {
+      headers: {
+        'Cache-Control': CACHE_CONTROL.DEFAULT,
+      },
+    },
+  )
+}
+
+export const headers: HeadersFunction = () => {
+  return {
+    'Cache-Control': CACHE_CONTROL.DEFAULT,
+  }
 }
 
 export default function Index() {
