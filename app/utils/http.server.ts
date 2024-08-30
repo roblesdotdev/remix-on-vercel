@@ -7,4 +7,7 @@ export const CACHE_CONTROL = {
     sMaxage: '1month',
     staleWhileRevalidate: '1year',
   }),
+  REVALIDATE: cacheHeader({
+    noCache: true,
+  }),
 }

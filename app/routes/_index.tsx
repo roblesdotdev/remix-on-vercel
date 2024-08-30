@@ -1,15 +1,19 @@
-import { useLoaderData } from '@remix-run/react'
-import { type HeadersFunction, json } from '@vercel/remix'
+import { Await, useLoaderData } from '@remix-run/react'
+import { type HeadersFunction, defer } from '@vercel/remix'
+import { Suspense } from 'react'
 import { GeneralErrorBoundary } from '~/components/error-boundary'
+import { IssueList, IssueListSkeleton } from '~/components/issue-list'
 import { db } from '~/utils/db.server'
 import { CACHE_CONTROL } from '~/utils/http.server'
 
 export async function loader() {
-  const issues = await db.issue.findMany({
-    take: 3,
-    orderBy: { createdAt: 'desc' },
-  })
-  return json(
+  const issues = db.issue
+    .findMany({
+      take: 3,
+      orderBy: { createdAt: 'desc' },
+    })
+    .then(result => result)
+  return defer(
     {
       issues,
     },
@@ -33,22 +37,11 @@ export default function Index() {
     <div className="container py-8">
       <h1 className="text-lg">Recent issues</h1>
       <div className="mt-6 max-w-screen-sm">
-        <ul className="flex flex-col gap-2 divide-y border">
-          {issues.map(issue => (
-            <li key={issue.id} className="px-4 py-3 text-sm">
-              <p className="line-clamp-2 text-neutral-400">
-                <span className="font-medium text-neutral-300">
-                  {issue.title}
-                </span>
-                {' | '}
-                {issue.description}
-              </p>
-              <p className="mt-2 text-xs">
-                <span className="text-neutral-400">by</span> {issue.author}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <Suspense fallback={<IssueListSkeleton />}>
+          <Await resolve={issues}>
+            {resolvedIssues => <IssueList issues={resolvedIssues} />}
+          </Await>
+        </Suspense>
       </div>
     </div>
   )
