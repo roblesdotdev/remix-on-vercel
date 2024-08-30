@@ -26,8 +26,31 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="flex h-dvh flex-col">
+        <div className="container pt-8">
+          <div className="w-full border border-dashed px-4 py-3">
+            <h1 className="mb-2 font-medium">Issue Tracker</h1>
+            <p className="text-sm text-neutral-400">
+              Simple app built to explore how Remix works on Vercel, using
+              Postgres and Prisma.
+            </p>
+          </div>
+        </div>
+        <main className="container flex-1 pt-8">{children}</main>
+        <footer className="container py-8">
+          <p className="text-sm text-neutral-400">
+            Created by Aldo R. Robles.{' '}
+            <a
+              className="underline hover:text-neutral-200"
+              href="https://github.com/roblesdotdev/remix-on-vercel"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Source
+            </a>
+            .
+          </p>
+        </footer>
         <ScrollRestoration />
         <Scripts />
       </body>

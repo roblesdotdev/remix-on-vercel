@@ -34,9 +34,9 @@ export const headers: HeadersFunction = () => {
 export default function Index() {
   const { issues } = useLoaderData<typeof loader>()
   return (
-    <div className="container py-8">
-      <h1 className="text-lg">Recent issues</h1>
-      <div className="mt-6 max-w-screen-sm">
+    <div>
+      <h1>Recent issues</h1>
+      <div className="mt-4 max-w-screen-sm">
         <Suspense fallback={<IssueListSkeleton />}>
           <Await resolve={issues}>
             {resolvedIssues => <IssueList issues={resolvedIssues} />}
