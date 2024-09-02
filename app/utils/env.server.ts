@@ -13,7 +13,7 @@ declare global {
   }
 }
 
-export function initEnv(context: any) {
+export function checkEnv(context: any) {
   const parsed = envSchema.safeParse(context)
 
   if (parsed.success === false) {
