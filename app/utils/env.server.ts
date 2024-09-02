@@ -13,8 +13,8 @@ declare global {
   }
 }
 
-export function initEnv() {
-  const parsed = envSchema.safeParse(process.env)
+export function initEnv(context: any) {
+  const parsed = envSchema.safeParse(context)
 
   if (parsed.success === false) {
     console.error(
